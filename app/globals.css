@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #0a0a0a;
+    --cyber-blue: #00f3ff;
+    --neon-pink: #ff0055;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--cyber-blue);
+  }
+}
+
+@layer utilities {
+  .scanline {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scanline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 4px,
+      rgba(0, 243, 255, 0.02) 4px,
+      rgba(0, 243, 255, 0.02) 8px
+    );
+    pointer-events: none;
+    z-index: 1;
+    animation: scanlineMove 10s linear infinite;
+  }
+
+  @media (max-width: 640px) {
+    .scanline::before {
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 6px,
+        rgba(0, 243, 255, 0.02) 6px,
+        rgba(0, 243, 255, 0.02) 12px
+      );
+    }
+  }
+
+  @keyframes scanlineMove {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(100px);
+    }
+  }
+
+  .text-glow-blue {
+    text-shadow: 
+      0 0 10px rgba(0, 243, 255, 0.8),
+      0 0 20px rgba(0, 243, 255, 0.6),
+      0 0 30px rgba(0, 243, 255, 0.4);
+  }
+
+  .text-glow-pink {
+    text-shadow: 
+      0 0 10px rgba(255, 0, 85, 0.8),
+      0 0 20px rgba(255, 0, 85, 0.6),
+      0 0 30px rgba(255, 0, 85, 0.4);
+  }
+
+  .breathing {
+    animation: breathing 2s ease-in-out infinite;
+  }
+
+  @keyframes breathing {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  .glitch-animation {
+    animation: glitch 0.3s;
+  }
+
+  @keyframes glitch {
+    0%, 100% {
+      transform: translate(0);
+      filter: hue-rotate(0deg);
+    }
+    10% {
+      transform: translate(-2px, 2px);
+      filter: hue-rotate(90deg);
+    }
+    20% {
+      transform: translate(-2px, -2px);
+      filter: hue-rotate(180deg);
+    }
+    30% {
+      transform: translate(2px, 2px);
+      filter: hue-rotate(270deg);
+    }
+    40% {
+      transform: translate(2px, -2px);
+      filter: hue-rotate(360deg);
+    }
+    50% {
+      transform: translate(-2px, 2px);
+      filter: hue-rotate(90deg);
+    }
+    60% {
+      transform: translate(-2px, -2px);
+      filter: hue-rotate(180deg);
+    }
+    70% {
+      transform: translate(2px, 2px);
+      filter: hue-rotate(270deg);
+    }
+    80% {
+      transform: translate(-2px, -2px);
+      filter: hue-rotate(360deg);
+    }
+    90% {
+      transform: translate(2px, 2px);
+      filter: hue-rotate(90deg);
+    }
+  }
+}
